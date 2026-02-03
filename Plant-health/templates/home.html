@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroVision - Plant Disease Recognition</title>
+    
+    <link rel="icon" href="static\imagez\logosss.png" type="image/png">
+    <link rel="stylesheet" href="static\css\bootstrap.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light shadow-sm sticky-top" data-bs-theme="light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="static\imagez\logosss.png" alt="Logo" width="28" height="28" class="d-inline-block align-text-top">
+                <span class="navbar-brand-text">AgroVision</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Profile</a> </li>
+                </ul>
+            </div>
+            <div id="google_translate_element"></div>
+        </div>
+    </nav>
+    <main>
+        <main>
+        <section id="home" class="upload-section text-center py-5">
+            <div class="container">
+                <h1 class="display-5 fw-bold mb-3">Plant Disease Recognition</h1>
+                <p class="lead text-muted mb-4">Upload a clear image of a plant leaf to get an instant diagnosis.</p>
+
+                <div class="form-wrapper mx-auto">
+                    <form action="/upload/" method="POST" enctype="multipart/form-data">
+                        <h3 class="fw-normal mb-3">Upload Your Image</h3>
+                        <div class="mb-3">
+                            <input class="form-control form-control-lg" type="file" name="img" accept="image/png, image/jpeg" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100">Upload and Analyze</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        {% if result %}
+        <section id="result" class="result-section py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-4">Analysis Result</h2>
+                <div class="result-card">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="{{imagepath}}" alt="Uploaded Plant Image" class="result-image" id="result-image-el" crossOrigin="anonymous">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="result-text">
+                                <h3 class="fw-bold text-success-emphasis mb-3" id="pdf-name">{{ prediction['name'] }}</h3>
+                                <p class="mb-2"><strong>Cause:</strong> <span id="pdf-cause-text">{{ prediction['cause'] }}</span></p>
+                                <p><strong>Cure:</strong> <span id="pdf-cure-text">{{ prediction['cure'] }}</span></p>
+                                <button id="download-pdf-btn" class="btn btn-outline-success mt-4">
+                                    Download Report as PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <section id="about" class="about-section py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-md-6">
+                        <img src="static\imagez\logom\farmer.jpg" alt="About AgroVision" class="img-fluid rounded-3 shadow">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="fw-bold mb-3">About AgroVision</h2>
+                        <p class="lead text-muted">We are dedicated to solving real-world agricultural problems through technology.</p>
+                        <p>Our mission is to empower farmers with accessible and affordable tools. This AI-powered recognition tool provides instant diagnostics, helping farmers take timely action to protect their crops and secure their livelihood. This project leverages cutting-edge computer vision trained on thousands of images to provide the most accurate results possible.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tools" class="tools-section py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-5">Tools We Used</h2>
+                <div class="logo-scroller">
+                    <div class="logo-scroller-inner">
+                        <img src="static\imagez\logom\tensor.png" alt="TensorFlow">
+                        <img src="static\imagez\logom\keras.png" alt="Keras">
+                        <img src="static\imagez\logom\flask.png" alt="Flask">
+                        <img src="static\imagez\logom\bootstrap-logo.png" alt="Bootstrap">
+                        <img src="static\imagez\logom\python-logo.png" alt="Python">
+                        <img src="static\imagez\logom\opencv-logo.png" alt="OpenCV">
+                        
+                        <img src="static\imagez\logom\tensor.png" alt="TensorFlow">
+                        <img src="static\imagez\logom\keras.png" alt="Keras">
+                        <img src="static\imagez\logom\flask.png" alt="Flask">
+                        <img src="static\imagez\logom\bootstrap-logo.png" alt="Bootstrap">
+                        <img src="static\imagez\logom\python-logo.png" alt="Python">
+                        <img src="static\imagez\logom\opencv-logo.png" alt="OpenCV">
+
+                         <img src="static\imagez\logom\tensor.png" alt="TensorFlow">
+                        <img src="static\imagez\logom\keras.png" alt="Keras">
+                        <img src="static\imagez\logom\flask.png" alt="Flask">
+                        <img src="static\imagez\logom\bootstrap-logo.png" alt="Bootstrap">
+                        <img src="static\imagez\logom\python-logo.png" alt="Python">
+                        <img src="static\imagez\logom\opencv-logo.png" alt="OpenCV">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,kn,te,ta,or,bn', // English, Hindi, Kannada, Telugu, Tamil, Odia, Bengali
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <footer id="contact" class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-success">AgroVision</h5>
+                    <p class="text-white-50">Using AI to help farmers protect their crops. Instant diagnosis, actionable results.</p>
+                    <p class="text-white-50 mb-0">&copy; 2025 AgroVision. All rights reserved.</p>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#result" class="footer-link">Check Result</a></li>
+                        <li><a href="#tools" class="footer-link">Tools</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-geo-alt-fill me-3 mt-1"></i>
+                            <span class="text-white-50">123 AgriTech Avenue, Green Valley, India</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-envelope-fill me-3 mt-1"></i>
+                            <a href="mailto:info@agrovision.com" class="footer-link">info@agrovision.com</a>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="bi bi-telephone-fill me-3 mt-1"></i>
+                            <a href="tel:+911234567890" class="footer-link">+91 12345 67890</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="static\js\bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    
+    <script>
+        
+        window.onload = function() {
+            const downloadBtn = document.getElementById('download-pdf-btn');
+            
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    
+                    // --- 1. GET ALL DATA ---
+                    const plantName = document.getElementById('pdf-name').innerText;
+                    const cause = document.getElementById('pdf-cause-text').innerText;
+                    const cure = document.getElementById('pdf-cure-text').innerText;
+                    const imgElement = document.getElementById('result-image-el');
+
+                    // --- 2. PREPARE IMAGE ---
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = imgElement.width;
+                    canvas.height = imgElement.height;
+                    ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+                    const imgDataUrl = canvas.toDataURL('image/jpeg');
+
+                    // --- 3. PREPARE QR CODE ---
+                    const qrText = `Diagnosis: ${plantName}\n\nCause: ${cause}\n\nCure: ${cure}`;
+                    const qr = new QRious({
+                        value: qrText,
+                        size: 200
+                    });
+                    const qrDataUrl = qr.toDataURL();
+                    
+                    // --- 4. CREATE PDF DOCUMENT ---
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF('p', 'mm', 'a4');
+                    const margin = 20;
+                    const docWidth = doc.internal.pageSize.getWidth();
+                    
+                    // --- 5. ADD CONTENT TO PDF ---
+                    doc.setFontSize(24);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Plant Health Report', docWidth / 2, margin, { align: 'center' });
+
+                    const imgProps = doc.getImageProperties(imgDataUrl);
+                    const imgWidth = docWidth - (margin * 2);
+                    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+                    doc.addImage(imgDataUrl, 'JPEG', margin, margin + 15, imgWidth, imgHeight);
+
+                    let yPos = margin + 15 + imgHeight + 15;
+
+                    doc.setFontSize(16);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Diagnosis:', margin, yPos);
+                    
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(14);
+                    doc.text(plantName, margin, yPos + 8);
+                    
+                    yPos += 20;
+
+                    doc.setFontSize(16);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Cause:', margin, yPos);
+                    
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+                    const causeText = doc.splitTextToSize(cause, docWidth - (margin * 2));
+                    doc.text(causeText, margin, yPos + 8);
+                    
+                    yPos += (causeText.length * 5) + 10;
+
+                    doc.setFontSize(16);
+    
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Cure:', margin, yPos);
+                    
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+                    const cureText = doc.splitTextToSize(cure, docWidth - (margin * 2));
+                    doc.text(cureText, margin, yPos + 8);
+                    
+                    const pageHeight = doc.internal.pageSize.getHeight();
+                    const footerY = pageHeight - 45;
+
+                    doc.setFontSize(10);
+                    doc.setFont('helvetica', 'italic');
+                    doc.setTextColor(150);
+                    doc.text('Generated by AgroVision', margin, footerY + 20);
+                    doc.setTextColor(0);
+
+                    const qrSize = 40;
+                    doc.addImage(qrDataUrl, 'PNG', docWidth - qrSize - margin, footerY - 5, qrSize, qrSize);
+
+                    // --- 6. SAVE THE PDF ---
+                    doc.save(plantName.replace(/\s+/g, '_') + '_Report.pdf');
+                });
+            }
+        };
+    </script>
+</body>
+</html>

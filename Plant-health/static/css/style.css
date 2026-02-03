@@ -1,0 +1,167 @@
+/* --- Global & Theme --- */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* --- Navbar --- */
+.navbar {
+    border-bottom: 1px solid #dee2e6;
+    z-index: 1030;
+}
+.navbar-brand-text {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #28a745;
+}
+
+/* --- Upload Section ("Hero") --- */
+.upload-section {
+    background: linear-gradient(135deg, #f5fff2, #ffffff);
+}
+.form-wrapper {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    border: 1px solid #eee;
+}
+
+/* --- Result Section --- */
+.result-section {
+        position: relative; 
+    z-index: 1020; 
+    background-color: #f8f9fa;
+    border-top-left-radius: 20px;  
+    border-top-right-radius: 20px;  
+}
+.result-card {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    border: 1px solid #eee;
+}
+.result-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+.result-text h3 {
+    font-weight: 700;
+}
+.result-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- "About Us" Section --- */
+.about-section {
+    position: relative; 
+    z-index: 1020; 
+    background-color: #ffffff;
+    border-top-left-radius: 20px;   
+    border-top-right-radius: 20px;  
+}
+.about-section img {
+    object-fit: cover;
+    height: 100%;
+    max-height: 400px;
+}
+
+/* --- NEW: "Tools We Used" Logo Scroller --- */
+.tools-section {
+    position: relative;
+    z-index: 1020; 
+    background-color: #f8f9fa;
+}
+.logo-scroller {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.logo-scroller-inner {
+    display: flex;
+    gap: 3rem;
+    padding-block: 1rem;
+    animation: scroll 30s linear infinite;
+}
+.logo-scroller-inner img {
+    height: 60px; 
+    width: auto;
+    opacity: 1;
+    transition: all 0.2s ease;
+    flex-shrink: 0; 
+}
+.logo-scroller-inner:hover {
+    animation-play-state: paused;
+}
+.logo-scroller-inner img:hover {
+   transform: scale(1.1); 
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+   
+        transform: translateX(-50%); 
+    }
+}
+
+/* --- NEW: Footer --- */
+.footer {
+    background-color: #212529;
+    position: relative; 
+    z-index: 1020;   
+}
+.footer-link {
+    text-decoration: none;
+    color: #adb5bd; 
+    transition: color 0.2s;
+}
+.footer-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* --- NEW: Faded Side Gradients --- */
+
+body {
+    
+    position: relative;
+}
+
+/* This creates the left gradient */
+body::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 25%; 
+    height: 100vh;
+    background: linear-gradient(to right, rgba(169, 255, 169, 0.7), transparent);
+    z-index: 1019; 
+    pointer-events: none; 
+}
+
+/* This creates the right gradient */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 100vh;
+    background: linear-gradient(to left, rgba(169, 255, 169, 0.7), transparent);
+    z-index: 1019;
+    pointer-events: none;
+}
